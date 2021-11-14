@@ -10,11 +10,12 @@ COMMON_FILTERS = aresample scale crop overlay hstack vstack
 COMMON_DEMUXERS = matroska ogg mov mp3 wav image2 concat
 COMMON_DECODERS = vp8 h264 vorbis opus mp3 aac pcm_s16le mjpeg png
 
-WEBM_MUXERS = webm ogg mp4 wav ipod flac asf aiff mmf null
-WEBM_ENCODERS = libvpx_vp8 pcm_s16le pcm_s16be libopus aac flac alac wmav2 adpcm_yamaha
+WEBM_MUXERS = webm ogg mp4 mp3 wav ipod flac asf aiff mmf null
+WEBM_ENCODERS = libvpx_vp8 libmp3lame pcm_s16le pcm_s16be libopus aac flac alac wmav2 adpcm_yamaha
 FFMPEG_WEBM_BC = build/ffmpeg-webm/ffmpeg.bc
 FFMPEG_WEBM_PC_PATH = ../opus/dist/lib/pkgconfig
 WEBM_SHARED_DEPS = \
+	build/lame/dist/lib/libmp3lame.so \
 	build/opus/dist/lib/libopus.so \
 	build/libvpx/dist/lib/libvpx.so
 
@@ -193,8 +194,10 @@ build/ffmpeg-webm/ffmpeg.bc: $(WEBM_SHARED_DEPS)
 		$(addprefix --enable-muxer=,$(WEBM_MUXERS)) \
 		--enable-libopus \
 		--enable-libvpx \
-		--extra-cflags="-s USE_ZLIB=1 -I../libvpx/dist/include" \
-		--extra-ldflags="-r -L../libvpx/dist/lib" \
+		--enable-gpl \
+		--enable-libmp3lame \
+		--extra-cflags="-s USE_ZLIB=1 -I../libvpx/dist/include -I../lame/dist/include" \
+		--extra-ldflags="-r -L../libvpx/dist/lib -L../lame/dist/lib" \
 		&& \
 	emmake make -j EXESUF=.bc
 
