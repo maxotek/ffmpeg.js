@@ -10,8 +10,8 @@ COMMON_FILTERS = aresample scale crop overlay hstack vstack
 COMMON_DEMUXERS = matroska ogg mov mp3 wav image2 concat
 COMMON_DECODERS = vp8 h264 vorbis opus mp3 aac pcm_s16le mjpeg png
 
-WEBM_MUXERS = webm ogg mp4 wav ipod flac null
-WEBM_ENCODERS = libvpx_vp8 pcm_s16le libopus aac flac alac
+WEBM_MUXERS = webm ogg mp4 wav ipod flac asf null
+WEBM_ENCODERS = libvpx_vp8 pcm_s16le libopus aac flac alac wmav2
 FFMPEG_WEBM_BC = build/ffmpeg-webm/ffmpeg.bc
 FFMPEG_WEBM_PC_PATH = ../opus/dist/lib/pkgconfig
 WEBM_SHARED_DEPS = \
