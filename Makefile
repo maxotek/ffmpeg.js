@@ -162,7 +162,7 @@ FFMPEG_COMMON_ARGS = \
 	--disable-safe-bitstream-reader \
 	\
 	--disable-all \
-	--enable-filter=volume
+	--enable-filter=volume \
 	--enable-ffmpeg \
 	--enable-avcodec \
 	--enable-avformat \
